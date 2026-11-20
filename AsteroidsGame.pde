@@ -5,6 +5,9 @@ public void setup()
   background(0);
   for (int i = 0; i < nightSky.length; i++) {
     nightSky[i] = new Star(); 
+}
+  for (int i = 0; i < 6; i++) {
+    rocks.add(new Asteroid());
 }}
 public void draw() 
 {
@@ -12,7 +15,16 @@ public void draw()
   bob.move();
   bob.show();
   for (int i = 0; i < nightSky.length; i++) {
-   nightSky[i].show(); 
+   nightSky[i].show();
+}
+for (int i = 0; i < rocks.size(); i++) {
+   rocks.get(i).move();
+   rocks.get(i).show();
+   float d = dist((float)bob.getCenterX(),(float)bob.getCenterY(),(float)rocks.get(i).getCenterX(),(float)rocks.get(i).getCenterY());
+   if (d < 10) {
+     rocks.remove(i);
+     rocks.add(new Asteroid());
+     i--;}
 }
 }
 
